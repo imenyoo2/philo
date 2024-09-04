@@ -1,7 +1,7 @@
 
 
 NAME = philo_bonus
-OFLAGS = -Wall -Werror -Wextra -pthread -O3# -fsanitize=thread#
+OFLAGS = -Wall -Werror -Wextra -pthread -O3
 OBJS = philo_bonus.o parse_bonus.o helpers_bonus.o helpers2_bonus.o helpers3_bonus.o process2_bonus.o process_bonus.o forks_bonus.o philo_actions_bonus.o log_bonus.o monitor_bonus.o
 CC = cc
 
