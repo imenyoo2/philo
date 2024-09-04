@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 23:02:17 by ayait-el          #+#    #+#             */
-/*   Updated: 2024/09/04 04:09:03 by ayait-el         ###   ########.fr       */
+/*   Updated: 2024/09/04 06:44:24 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,6 @@ int	main(int argc, char **argv)
 		return (free(args), 1);
 	if (run_processes(args))
 		return (free_args(args), 1);
-	fflush(stdin);
-	fflush(stdout);
 	free_args(args);
 	return (0);
 }
