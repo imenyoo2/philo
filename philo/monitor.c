@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 00:13:28 by ayait-el          #+#    #+#             */
-/*   Updated: 2024/08/16 00:20:57 by ayait-el         ###   ########.fr       */
+/*   Updated: 2024/09/04 06:39:51 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,14 @@ static int	is_philos_full(t_args *args)
 	if (args->number_of_meals == -1)
 		return (0);
 	i = 0;
+	pthread_mutex_lock(&args->log_num_of_meals);
 	while (i < args->number_of_philosophers)
 	{
 		if (args->number_of_meals_arr[i] < args->number_of_meals)
-			return (0);
+			return (pthread_mutex_unlock(&args->log_num_of_meals), 0);
 		i++;
 	}
+	pthread_mutex_unlock(&args->log_num_of_meals);
 	if (pthread_mutex_lock(&args->died))
 		write(2, "failed to lock args->died\n", 26);
 	args->has_died = 1;

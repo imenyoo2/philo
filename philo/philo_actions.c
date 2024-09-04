@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 00:26:34 by ayait-el          #+#    #+#             */
-/*   Updated: 2024/08/16 00:26:46 by ayait-el         ###   ########.fr       */
+/*   Updated: 2024/09/04 06:40:22 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int	philo_eat(t_philo_args *args)
 	if (mutex_lock(args))
 		return (1);
 	log_eating(args);
+	pthread_mutex_lock(&args->args->log_num_of_meals);
 	args->args->number_of_meals_arr[args->id - 1] += 1;
+	pthread_mutex_unlock(&args->args->log_num_of_meals);
 	if (update_current(&args->args->last_eat_arr[args->id - 1]))
 		return (mutex_unlock(args->args->mutex_arr, args->id,
 				args->args->number_of_philosophers - 1), 1);

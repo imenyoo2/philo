@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 00:25:57 by ayait-el          #+#    #+#             */
-/*   Updated: 2024/08/16 00:25:58 by ayait-el         ###   ########.fr       */
+/*   Updated: 2024/09/04 06:40:13 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct args
 	pthread_mutex_t	died;
 	pthread_mutex_t	log_last_eat;
 	pthread_mutex_t	start_simulation;
+	pthread_mutex_t	log_num_of_meals;
 
 	struct timeval	*last_eat_arr;
 	int				*number_of_meals_arr;
@@ -80,6 +81,7 @@ int					start_simulation(pthread_mutex_t *ready);
 int					is_philo_full(t_philo_args *args);
 int					has_died__(t_args *args);
 void				set_has_died(t_args *args);
+int					set_log_num_of_meals_mutex(t_args *args);
 
 // log
 int					log_eating(t_philo_args *args);

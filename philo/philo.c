@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 23:02:17 by ayait-el          #+#    #+#             */
-/*   Updated: 2024/08/16 00:24:04 by ayait-el         ###   ########.fr       */
+/*   Updated: 2024/09/04 06:38:54 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static void	free_mutexes(t_args *args)
 	pthread_mutex_destroy(&args->died);
 	pthread_mutex_destroy(&args->log_last_eat);
 	pthread_mutex_destroy(&args->start_simulation);
+	pthread_mutex_destroy(&args->log_num_of_meals);
 }
 
 static void	free_args(t_args *args)

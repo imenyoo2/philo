@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 23:03:44 by ayait-el          #+#    #+#             */
-/*   Updated: 2024/08/16 00:25:18 by ayait-el         ###   ########.fr       */
+/*   Updated: 2024/09/04 06:40:03 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ int	init_shared_mutexes(t_args *args)
 		pthread_mutex_destroy(&args->print_mutex);
 		return (write(2, "init_shared_mutexes failed\n", 27), 1);
 	}
+	if (set_log_num_of_meals_mutex(args))
+		return (write(2, "init_shared_mutexes failed\n", 27), 1);
 	return (0);
 }
 

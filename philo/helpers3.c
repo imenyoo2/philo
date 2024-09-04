@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 22:53:29 by ayait-el          #+#    #+#             */
-/*   Updated: 2024/08/16 00:21:22 by ayait-el         ###   ########.fr       */
+/*   Updated: 2024/09/04 06:39:40 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,17 @@ void	set_has_died(t_args *args)
 	pthread_mutex_lock(&args->died);
 	args->has_died = 1;
 	pthread_mutex_unlock(&args->died);
+}
+
+int	set_log_num_of_meals_mutex(t_args *args)
+{
+	if (pthread_mutex_init(&args->log_num_of_meals, NULL))
+	{
+		pthread_mutex_destroy(&args->died);
+		pthread_mutex_destroy(&args->start_simulation);
+		pthread_mutex_destroy(&args->print_mutex);
+		pthread_mutex_destroy(&args->log_last_eat);
+		return (1);
+	}
+	return (0);
 }
