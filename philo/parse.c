@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 23:03:44 by ayait-el          #+#    #+#             */
-/*   Updated: 2024/09/04 06:40:03 by ayait-el         ###   ########.fr       */
+/*   Updated: 2024/09/08 22:44:48 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,11 @@ t_args	*parse_argv(int argc, char **argv)
 	args->number_of_meals_arr = NULL;
 	args->last_eat_arr = NULL;
 	if (argc > 5)
+	{
 		args->number_of_meals = ft_atoi(argv[5]);
+		if (args->number_of_meals <= 0)
+			return (free(args), unvalid_argument_error(), NULL);
+	}
 	else
 		args->number_of_meals = -1;
 	if (check_parsed_args(args))

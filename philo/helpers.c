@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 22:51:11 by ayait-el          #+#    #+#             */
-/*   Updated: 2024/08/15 22:52:23 by ayait-el         ###   ########.fr       */
+/*   Updated: 2024/09/08 22:43:12 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ static int	get_result(const char *str)
 		result += *str - '0';
 		str++;
 	}
+	if (*str != '\0')
+		return (-1);
 	return (result);
 }
 
@@ -53,6 +55,8 @@ int	ft_atoi(const char *str)
 		str++;
 	}
 	result = get_result(str);
+	if (result == -1)
+		return (-1);
 	if (minus_counter % 2)
 		return (result * -1);
 	else
