@@ -67,8 +67,7 @@ pthread_mutex_t	*init_mutex_arr(int size)
 		if (pthread_mutex_init(&mutex_arr[i], NULL))
 		{
 			free_mutex_arr(mutex_arr, size);
-			return (write(2, "failed to initiate mutex_arr\n", 29),
-				free(mutex_arr), NULL);
+			return (write(2, "failed to initiate mutex_arr\n", 29), NULL);
 		}
 		i++;
 	}
