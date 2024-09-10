@@ -1,6 +1,6 @@
 
 NAME = philo
-OFLAGS = -Wall -Werror -Wextra -pthread -O3
+OFLAGS = -Wall -Werror -Wextra -pthread -O3 -g
 OBJS = philo.o parse.o helpers.o helpers2.o helpers3.o thread2.o thread.o mutex.o philo_actions.o log.o monitor.o
 CC = cc
 

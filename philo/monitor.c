@@ -73,6 +73,7 @@ static int	launch_simulation(t_args *args, pthread_t *threads_arr)
 	return (0);
 }
 
+// TODO: 0 should not be blocked in number of meals
 int	run_and_monitor_threads(t_args *args, pthread_t *threads_arr)
 {
 	int				i;
@@ -84,19 +85,22 @@ int	run_and_monitor_threads(t_args *args, pthread_t *threads_arr)
 	while (1)
 	{
 		i = 0;
+    pthread_mutex_lock(&args->log_last_eat);
 		while (i < args->number_of_philosophers)
 		{
 			last_eat = &args->last_eat_arr[i];
 			if (update_current(&current))
-				return (set_has_died(args), 1);
+				return (pthread_mutex_unlock(&args->log_last_eat), set_has_died(args), 1);
 			if (calculate_timestamp(last_eat, &current) >= args->time_to_die)
 			{
+        pthread_mutex_unlock(&args->log_last_eat);
 				if (log_died(i, args))
 					return (1);
 				return (0);
 			}
 			i++;
 		}
+    pthread_mutex_unlock(&args->log_last_eat);
 		if (is_philos_full(args))
 			return (0);
 	}
