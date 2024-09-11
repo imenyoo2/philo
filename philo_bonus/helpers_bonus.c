@@ -22,7 +22,7 @@ static const char	*skip_white_spaces(const char *str)
 
 static int	get_result(const char *str)
 {
-	int	result;
+	long	result;
 
 	result = 0;
 	if (*str >= '0' && *str <= '9')
@@ -30,12 +30,14 @@ static int	get_result(const char *str)
 		result += *str - '0';
 		str++;
 	}
-	while (*str >= '0' && *str <= '9')
+	while (*str >= '0' && *str <= '9' && result <= 2147483647)
 	{
 		result *= 10;
 		result += *str - '0';
 		str++;
 	}
+  if (result > 2147483647)
+    return (-1);
 	if (*str != '\0')
 		return (-1);
 	return (result);
