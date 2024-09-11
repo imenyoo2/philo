@@ -50,6 +50,8 @@ int	main(int argc, char **argv)
 	args = parse_argv(argc, argv);
 	if (!args)
 		return (1);
+  if (args->number_of_meals == 0)
+    return (free(args), 0);
 	if (set_shared_data(args))
 		return (free(args), 1);
 	if (run_threads(args))

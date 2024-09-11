@@ -49,7 +49,7 @@ t_args	*parse_argv(int argc, char **argv)
 	if (argc > 5)
 	{
 		args->number_of_meals = ft_atoi(argv[5]);
-		if (args->number_of_meals <= 0)
+		if (args->number_of_meals < 0)
 			return (free(args), unvalid_argument_error(), NULL);
 	}
 	else
