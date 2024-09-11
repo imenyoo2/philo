@@ -47,6 +47,8 @@ int	ft_atoi(const char *str)
 	int	result;
 
 	str = skip_white_spaces(str);
+  if (*str == '\0')
+    return (-1);
 	minus_counter = 0;
 	if (*str == '-' || *str == '+')
 	{
