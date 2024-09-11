@@ -85,9 +85,9 @@ int	run_and_monitor_threads(t_args *args, pthread_t *threads_arr)
 	while (1)
 	{
 		i = 0;
-    pthread_mutex_lock(&args->log_last_eat);
 		while (i < args->number_of_philosophers)
 		{
+      pthread_mutex_lock(&args->log_last_eat);
 			last_eat = &args->last_eat_arr[i];
 			if (update_current(&current))
 				return (pthread_mutex_unlock(&args->log_last_eat), set_has_died(args), 1);
@@ -98,9 +98,9 @@ int	run_and_monitor_threads(t_args *args, pthread_t *threads_arr)
 					return (1);
 				return (0);
 			}
+      pthread_mutex_unlock(&args->log_last_eat);
 			i++;
 		}
-    pthread_mutex_unlock(&args->log_last_eat);
 		if (is_philos_full(args))
 			return (0);
 	}
