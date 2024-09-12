@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 00:13:28 by ayait-el          #+#    #+#             */
-/*   Updated: 2024/09/04 06:39:51 by ayait-el         ###   ########.fr       */
+/*   Updated: 2024/09/12 02:07:43 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,21 @@ static int	launch_simulation(t_args *args, pthread_t *threads_arr)
 	return (0);
 }
 
+static int	philo_is_dead(struct timeval *last_eat, t_args *args)
+{
+	struct timeval	current;
+
+	update_current(&current);
+	if (calculate_timestamp(last_eat, &current) >= args->time_to_die)
+		return (1);
+	else
+		return (0);
+}
+
 int	run_and_monitor_threads(t_args *args, pthread_t *threads_arr)
 {
 	int				i;
 	struct timeval	*last_eat;
-	struct timeval	current;
 
 	if (launch_simulation(args, threads_arr))
 		return (1);
@@ -86,18 +96,16 @@ int	run_and_monitor_threads(t_args *args, pthread_t *threads_arr)
 		i = 0;
 		while (i < args->number_of_philosophers)
 		{
-      pthread_mutex_lock(&args->log_last_eat);
+			pthread_mutex_lock(&args->log_last_eat);
 			last_eat = &args->last_eat_arr[i];
-			if (update_current(&current))
-				return (pthread_mutex_unlock(&args->log_last_eat), set_has_died(args), 1);
-			if (calculate_timestamp(last_eat, &current) >= args->time_to_die)
+			if (philo_is_dead(last_eat, args))
 			{
-        pthread_mutex_unlock(&args->log_last_eat);
+				pthread_mutex_unlock(&args->log_last_eat);
 				if (log_died(i + 1, args))
 					return (1);
 				return (0);
 			}
-      pthread_mutex_unlock(&args->log_last_eat);
+			pthread_mutex_unlock(&args->log_last_eat);
 			i++;
 		}
 		if (is_philos_full(args))

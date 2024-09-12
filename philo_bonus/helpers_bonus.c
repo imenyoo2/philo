@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 22:51:11 by ayait-el          #+#    #+#             */
-/*   Updated: 2024/08/30 10:09:14 by ayait-el         ###   ########.fr       */
+/*   Updated: 2024/09/12 02:08:55 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ static int	get_result(const char *str)
 		result += *str - '0';
 		str++;
 	}
-  if (result > 2147483647)
-    return (-1);
+	if (result > 2147483647)
+		return (-1);
 	if (*str != '\0')
 		return (-1);
 	return (result);
@@ -49,8 +49,8 @@ int	ft_atoi(const char *str)
 	int	result;
 
 	str = skip_white_spaces(str);
-  if (*str == '\0')
-    return (-1);
+	if (*str == '\0')
+		return (-1);
 	minus_counter = 0;
 	if (*str == '-' || *str == '+')
 	{

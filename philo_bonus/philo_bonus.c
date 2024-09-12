@@ -6,7 +6,7 @@
 /*   By: ayait-el <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 23:02:17 by ayait-el          #+#    #+#             */
-/*   Updated: 2024/09/08 22:45:24 by ayait-el         ###   ########.fr       */
+/*   Updated: 2024/09/12 02:09:33 by ayait-el         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@ int	main(int argc, char **argv)
 	args = parse_argv(argc, argv);
 	if (!args)
 		return (1);
-  if (args->number_of_meals == 0)
-    return (free(args), 0);
+	if (args->number_of_meals == 0)
+		return (free(args), 0);
 	if (int_semaphores(args))
 		return (write(2, "int_semaphores: failed to create\n", 33), free(args),
 			1);
