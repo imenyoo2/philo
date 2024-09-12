@@ -94,7 +94,7 @@ int	run_and_monitor_threads(t_args *args, pthread_t *threads_arr)
 			if (calculate_timestamp(last_eat, &current) >= args->time_to_die)
 			{
         pthread_mutex_unlock(&args->log_last_eat);
-				if (log_died(i, args))
+				if (log_died(i + 1, args))
 					return (1);
 				return (0);
 			}
