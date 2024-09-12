@@ -6,9 +6,6 @@ CC = cc
 
 all: $(NAME)
 
-%.a: always
-	$(call MAKE_LIB,all,$(word 1,$(subst /, ,$*)))
-
 %.o: %.c philo.h
 	$(CC) $(OFLAGS) -c $< -o $@
 
@@ -22,6 +19,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
-
 
 .PHONEY: all clean fclean re

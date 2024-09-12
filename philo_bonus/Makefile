@@ -7,9 +7,6 @@ CC = cc
 
 all: $(NAME)
 
-%.a: always
-	$(call MAKE_LIB,all,$(word 1,$(subst /, ,$*)))
-
 %_bonus.o: %_bonus.c philo_bonus.h
 	$(CC) $(OFLAGS) -c $< -o $@
 
