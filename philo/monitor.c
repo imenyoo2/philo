@@ -73,7 +73,6 @@ static int	launch_simulation(t_args *args, pthread_t *threads_arr)
 	return (0);
 }
 
-// TODO: 0 should not be blocked in number of meals
 int	run_and_monitor_threads(t_args *args, pthread_t *threads_arr)
 {
 	int				i;
