@@ -73,7 +73,6 @@ void	timeval_copy(struct timeval *from, struct timeval *to)
 	to->tv_usec = from->tv_usec;
 }
 
-// note: time is in ms
 long	calculate_timestamp(struct timeval *start, struct timeval *current)
 {
 	return ((long)((current->tv_usec - start->tv_usec) / 1000)
